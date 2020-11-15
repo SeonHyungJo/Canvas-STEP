@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  #canvas{
+    background-color: black;
+  }
+</style>
+<body>
+  <canvas id="canvas" width="430" height="300"></canvas>
+</body>
+
+<script>
+  const canvasEl = document.getElementById('canvas');
+  const ctx = canvasEl.getContext('2d');
+
+  const Netflix_RED = '#E50916'
+
+  // Shadow Setting
+  ctx.fillStyle = Netflix_RED;
+  ctx.strokeStyle = Netflix_RED;
+  ctx.shadowColor = 'black'
+  // ctx.shadowOffsetX = -15
+  // ctx.shadowOffsetY = -5
+  ctx.shadowBlur = 10
+  ctx.lineWidth = 20;
+
+
+  // draws an ellipse based on cx,cy being ellipse's centerpoint coordinate
+  function drawEllipse2(cx, cy, width, height) {
+    const PI2 = Math.PI;
+    const ratio = height / width;
+    const radius = Math.max(width, height) / 2;
+    const increment = 0.01 / radius;
+    ctx.lineWidth = 20;
+    ctx.beginPath();
+
+    for (let radians = increment; radians < PI2; radians += increment) {
+      const x = cx + radius * Math.sin(radians);
+      const y = cy - ratio * radius * Math.cos(radians);
+      ctx.lineTo(x, y);
+    }
+
+    ctx.stroke();
+  }
+
+  drawEllipse2(100, 100, 120, 100)
+</script>
+
+</html>
